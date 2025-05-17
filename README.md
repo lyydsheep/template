@@ -4,7 +4,6 @@
 
 ## 项目结构
 ```plaintext
-/Users/lyydsheep/workspace/Go/projects/template
 ├── api/                    # API 相关代码，涵盖控制器、响应和请求数据结构定义，以及路由配置
 │   ├── controller/         # 处理 HTTP 请求的控制器层
 │   ├── reply/              # 定义响应数据结构

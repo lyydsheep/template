@@ -7,7 +7,7 @@ import (
 	"your-module-name/common/app"
 	"your-module-name/common/errcode"
 	"your-module-name/library"
-	"your-module-name/logic/appService"
+	"your-module-name/logic/service"
 	"github.com/gin-gonic/gin"
 )
 

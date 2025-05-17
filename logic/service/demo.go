@@ -7,7 +7,7 @@ import (
 	"your-module-name/common/errcode"
 	"your-module-name/common/util"
 	"your-module-name/logic/domain"
-	"your-module-name/logic/domainService"
+	"your-module-name/logic/repository"
 )
 
 type DemoAppServiceV1 struct {
