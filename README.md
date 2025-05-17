@@ -42,7 +42,7 @@
 ## 快速开始
 ### 1. 克隆项目
 ```bash
-git clone <your-repo-url> your-project-name
+git clone <https://github.com/lyydsheep/template> your-project-name
 cd your-project-name
 ```
 ### 2. 初始化项目
