@@ -12,8 +12,8 @@ import (
 	"your-module-name/common/middleware"
 	"your-module-name/dal/cache"
 	"your-module-name/dal/dao"
-	"your-module-name/logic/appService"
-	"your-module-name/logic/domainService"
+	"your-module-name/logic/service"
+	"your-module-name/logic/repository"
 	"github.com/gin-gonic/gin"
 )
 
