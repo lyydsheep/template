@@ -42,13 +42,13 @@ func (r *response) SuccessOk() {
 	r.Success("")
 }
 
-func (r *response) Error(err *errcode.AppError) {
+func (r *response) Error(err error) {
 	appErr := errcode.ErrServer.Clone()
 	if !errors.As(err, &appErr) {
 		appErr = errcode.ErrServer.WithCause(err)
 	}
-	r.Code = err.Code()
-	r.Msg = err.Msg()
+	r.Code = appErr.Code()
+	r.Msg = appErr.Msg()
 	if _, ok := r.c.Get("traceId"); ok {
 		r.RequestId = r.c.GetString("traceId")
 	}
