@@ -1,9 +1,10 @@
 package app
 
 import (
+	"errors"
+	"github.com/gin-gonic/gin"
 	"your-module-name/common/errcode"
 	log "your-module-name/common/logger"
-	"github.com/gin-gonic/gin"
 )
 
 // 统一响应
@@ -28,8 +29,8 @@ func (r *response) SetPagination(pagination *Pagination) *response {
 }
 
 func (r *response) Success(data any) {
-	r.Code = errcode.Success.GetCode()
-	r.Msg = errcode.Success.GetMsg()
+	r.Code = errcode.Success.Code()
+	r.Msg = errcode.Success.Msg()
 	if _, ok := r.c.Get("traceId"); ok {
 		r.RequestId = r.c.GetString("traceId")
 	}
@@ -42,11 +43,15 @@ func (r *response) SuccessOk() {
 }
 
 func (r *response) Error(err *errcode.AppError) {
-	r.Code = err.GetCode()
-	r.Msg = err.GetMsg()
+	appErr := errcode.ErrServer.Clone()
+	if !errors.As(err, &appErr) {
+		appErr = errcode.ErrServer.WithCause(err)
+	}
+	r.Code = err.Code()
+	r.Msg = err.Msg()
 	if _, ok := r.c.Get("traceId"); ok {
 		r.RequestId = r.c.GetString("traceId")
 	}
 	log.New(r.c).Error("api_response_err", "err", err)
-	r.c.JSON(err.HttpStatusCode(), r)
+	r.c.JSON(appErr.HttpStatusCode(), r)
 }
